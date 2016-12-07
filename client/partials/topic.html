@@ -1,0 +1,20 @@
+<p><a href="#/user/{{topic._user._id}}" class="topicCreator">{{topic._user.username}}</a> posted:</p>
+<h4>topic: {{topic.topic}}</h4>
+<p>Description: {{topic.description}}</p>
+<a href="#/wall">Back to Dashboard</a>
+<form ng-submit="submit()">
+	<textarea cols="60" rows="3" ng-model="post" placeholder="Post your answer here..."></textarea><br>
+	<input type="submit" value="Post">
+</form>
+
+<div ng-repeat='post in posts'>
+	<hr>
+	<p class='topic'><a href="#/user/{{post._user._id}}">{{post._user.username}}</a>: {{post.post}}</p>
+	<button ng-click="like(post._id)" class="btn btn-info">like</button>{{post.likes}}
+	<button ng-click="dislike(post._id)" class="btn btn-danger">dislike</button>{{post.dislikes}}
+	<p ng-repeat="comment in post.comments"><a href="#/user/{{comment._user._id}}">{{comment._user.username}}</a>:{{comment.comment}}</p>
+	<form ng-submit="createComment(reply,post._id)">
+		<textarea cols="60" rows="3" ng-model="reply" placeholder="Comment here"></textarea><br>
+		<input type="submit" value="Comment">
+	</form>
+</div>

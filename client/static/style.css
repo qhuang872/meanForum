@@ -1,0 +1,32 @@
+*{
+	font-family:sans-serif,ubuntu,arial;
+}
+.index{
+	margin-left:300px;
+}
+#indexTitle{
+	margin-top:100px;
+}
+.wall{
+	display:inline-block;
+	vertical-align:top;
+}
+#wallButton{
+	margin-top:20px;
+	margin-left:500px;
+}
+#wallForm,#wallFormTitle{
+	margin-left:100px;
+}
+.topic{
+	display:inline;
+}
+.topicCreator{
+	font-size:18px;
+}
+.user{
+	margin-left:400px;
+}
+#username{
+	margin-top:100px;
+}

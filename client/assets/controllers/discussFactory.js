@@ -1,0 +1,64 @@
+myApp.factory("discussFactory",function($http){
+	var users     = [];
+	var myfactory = {};
+	myfactory.getTopic=function(callback){
+		$http.get("/topics").then(function(returnedTopic){
+			callback(returnedTopic.data);		
+		})
+	};
+	myfactory.login=function(user,callback){
+		$http.post("/login",user).then(function(returnedUser){
+			callback(returnedUser.data);
+			users.push(returnedUser.data);
+		})
+	};
+	myfactory.getUser=function(callback){
+		callback(users);
+	};
+	myfactory.getCategories=function(callback){
+		$http.get("/categories").then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.getPost=function(topic,callback){
+		$http.get(`/${topic}/post`).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.createTopic=function(topic,callback){
+		$http.post("/topic",topic).then(function(){
+			callback();	
+		})
+	};
+	myfactory.showTopic=function(topicId,callback){
+		$http.get(`/topic/${topicId}`).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.post=function(post,callback){
+		$http.post("/post",post).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.likePost=function(id,callback){
+		$http.put(`/post/${id}/like`).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.dislikePost=function(id,callback){
+		$http.put(`/post/${id}/dislike`).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.createComment=function(comment,callback){
+		$http.post("/comment",comment).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	myfactory.showUser=function(userId,callback){
+		$http.get(`/user/${userId}`).then(function(returnedData){
+			callback(returnedData.data);
+		})
+	};
+	return myfactory;
+})

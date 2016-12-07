@@ -1,0 +1,26 @@
+<h1 class='wall'>welcome {{user}}</h1>
+<button ng-click="logout()" class='wall, btn btn-primary' id="wallButton">Log out</button>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Topic</th>
+			<th>Creator</th>
+			<th>Posts</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="topic in topics">
+		<td>{{topic._category.category}}</td>
+		<td><a href="#/topic/{{topic._id}}">{{topic.topic}}</a></td>
+		<td><a href="#/user/{{topic._user._id}}">{{topic._user.username}}</a></td>
+		<td>{{topic.posts.length}}</td>
+	</tr>
+</table>
+<p id="wallFormTitle">add a new topic</p>
+<form ng-submit="submit()" id='wallForm'>
+	<input type="text" ng-model="topic" placeholder="Enter topic"><br>
+	<textarea ng-model="description" cols="60" rows="3" placeholder="Enter description here"></textarea><br>
+	<select ng-options="category.category for category in categories" ng-model="selected">
+	</select><br>
+	<input type="submit" value="Submit" id="wallSubmit">
+</form>
